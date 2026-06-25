@@ -1,0 +1,100 @@
+# model:
+#   patch_size: 256
+#   channels: 3
+#   num_classes: 6
+#   weights_path: "C:/samcodebase/deeplearning/Trained_Models/model_v1/best_unet_satellite_model_v1.keras"
+
+# classes:
+#   0: { name: "Water", rgb: [226, 169, 41] }      # Ochre
+#   1: { name: "Land", rgb: [132, 41, 246] }       # Electric Purple
+#   2: { name: "Road", rgb: [110, 193, 228] }      # Sky Blue
+#   3: { name: "Building", rgb: [60, 16, 152] }    # Deep Indigo
+#   4: { name: "Vegetation", rgb: [254, 221, 58] }  # Canary Yellow
+#   5: { name: "Unlabeled", rgb: [155, 155, 155] } # Medium Gray
+
+
+# ========================== 
+# dataset:
+#   root_path: "C:/samcodebase/deeplearning/semantic-segmentation"
+#   name: "Semantic_segmentation_dataset"
+
+# model:
+#   patch_size: 256
+#   channels: 3
+#   num_classes: 6
+#   learning_rate: 0.0001
+#   # 🔍 FIXED: Pointed to the exact model filename on your local disk
+#   weights_path: "C:/samcodebase/deeplearning/Trained_Models/model_v1/best_unet_satellite_model_v1.22026-06-19_12-56-31.keras"
+
+# classes:
+#   0: { name: "Water", rgb: [226, 169, 41] }      # Ochre
+#   1: { name: "Land", rgb: [132, 41, 246] }       # Electric Purple
+#   2: { name: "Road", rgb: [110, 193, 228] }      # Sky Blue
+#   3: { name: "Building", rgb: [60, 16, 152] }    # Deep Indigo
+#   4: { name: "Vegetation", rgb: [254, 221, 58] }  # Canary Yellow
+#   5: { name: "Unlabeled", rgb: [155, 155, 155] } # Medium Gray
+
+# model path
+dataset:
+  root_path: "C:/samcodebase/deeplearning/semantic-segmentation"
+  name: "Semantic_segmentation_dataset"
+  output_folder: "Output_Masks"
+  output_suffix: "mask_v1"
+
+# model config
+model:
+  patch_size: 256
+  channels: 3
+  raster_bands: [1, 2, 3]
+  learning_rate: 0.0001
+  num_classes: 6
+  weights_path: "C:/samcodebase/deeplearning/Trained_Models/model_v1/best_unet_satellite_model_v1.22026-06-19_12-56-31.keras"
+
+# visual metric asset configurations
+logging:
+  metrics_prefix: "training_metrics"
+  chart_prefix: "loss_convergence"
+  chart_dpi: 150
+  chart_width: 12
+  chart_height: 5
+  colors:
+    primary: "#3C1098"   # Deep Indigo (Training)
+    secondary: "#FEDD3A" # Canary Yellow (Validation)
+
+#  NEW: Decoupled Dashboard Layout and Content Registry
+dashboard:
+  page_title: "Satellite Segmentation Viewer"
+  title: "🛰️ Satellite Image vs. Predicted Mask"
+  default_width: 1200
+  regions:
+    - name: "Region 1 Analysis"
+      raw_path: "Raw_Image/sectionB_2024_before_image1.png"
+      pred_path: "C:/samcodebase/deeplearning/Raw_Image/sectionB_2025_after_image2.png"
+      label_raw: "Original Satellite Image Mokuwa 2024"
+      label_pred: "U-Net Predicted Mask Mokuwa 2025 (Run v1.2)"
+      responsive: true
+
+    - name: "Region 2 Analysis"
+      raw_path: "C:/samcodebase/deeplearning/Outputs_Converted_Image/lagos1.png"
+      pred_path: "C:/samcodebase/deeplearning/Output_Masks/predicted_mask_quickview_3.png"
+      label_raw: "Original Satellite Image"
+      label_pred: "U-Net Predicted Mask (Run v1.2)"
+      responsive: true
+
+    - name: "Region 3 Analysis"
+      raw_path: "C:/samcodebase/deeplearning/compress/sentinel2_compressed_new.png"
+      pred_path: "C:/samcodebase/deeplearning/semantic-segmentation/Output_Masks/sentinel2_downloaded_mask_v1.tif" 
+      label_raw: "Original Satellite Image"
+      label_pred: "U-Net Predicted Mask (Seamless Overlap v1)"
+      responsive: true
+
+  
+# class 
+# Recommended Planetary Landcover Color Taxonomy
+classes:
+  0: { name: "Water", rgb: [0, 105, 148] }       # Deep Blue (Ocean/Rivers)
+  1: { name: "Land", rgb: [210, 180, 140] }      # Tan / Desert Sand (Barren Land)
+  2: { name: "Road", rgb: [128, 128, 128] }      # Asphalt Gray (Infrastructure)
+  3: { name: "Building", rgb: [195, 60, 60] }    # Terracotta Red (Built-up Areas)
+  4: { name: "Vegetation", rgb: [34, 139, 34] }  # Forest Green (Canopy / Crops)
+  5: { name: "Unlabeled", rgb: [240, 240, 240] } # Ultra-Light Gray (Cloud/Background)

@@ -1,0 +1,55 @@
+# =====================================================================
+# GEOSPATIAL & PLANETARY DATASETS (Ignore Heavy Rasters)
+# =====================================================================
+# Ignores the raw semantic segmentation tile set directory
+semantic-segmentation/Semantic_segmentation_dataset/
+
+# Ignores all raw imagery downloads and un-chipped satellite scenes
+Raw_Image/
+
+# =====================================================================
+# MACHINE LEARNING ARTIFACTS & WEIGHTS (Ignore Heavy Model Checkpoints)
+# =====================================================================
+# Ignores your specific trained models subdirectories and all .keras arrays
+Trained_Models/
+*.keras
+*.h5
+
+# =====================================================================
+# PIPELINE OUTPUTS, INTERMEDIATE COMPRESSIONS & CACHE
+# =====================================================================
+# Ignores quickview predictions, visualization charts, and downscaled files
+Output_Masks/*_quickview.png
+compress/
+temp/
+
+# Block all heavy stitched geotiff masks explicitly
+Output_Masks/*.tif
+Output_Masks/*.png
+# =====================================================================
+# ENVIRONMENT & SYSTEM CONFIGURATIONS
+# =====================================================================
+# Ignores local python virtual environment binaries and dependencies
+venv_deepl/
+.venv/
+__pycache__/
+*.pyc
+
+# OS specific local metadata exclusions
+.DS_Store
+Thumbs.db
+
+
+
+
+
+
+
+
+
+
+# C:\samcodebase\deeplearning\temp
+# C:\samcodebase\deeplearning\semantic-segmentation\Semantic_segmentation_dataset
+# C:\samcodebase\deeplearning\Raw_Image
+# C:\samcodebase\deeplearning\OUTPUTS
+# C:\samcodebase\deeplearning\Outputs_Converted_Image
